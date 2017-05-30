@@ -1,0 +1,31 @@
+{
+  "name": "Async-callbacks",
+  "version": "1.0.0",
+  "description": "Async callbacks is the very basics of understanding how to use asyncronous code in JavaScript",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha ./spec/*.spec.js",
+    "lint": "eslint ./",
+    "posttest": "npm run lint",
+    "precommit": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/northcoders/October-wk02-recursion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/northcoders/October-wk02-recursion/issues"
+  },
+  "homepage": "https://github.com/northcoders/October-wk02-recursion#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.15.0",
+    "husky": "^0.13.3"
+  },
+  "dependencies": {
+    "async": "^2.4.1"
+  }
+}
