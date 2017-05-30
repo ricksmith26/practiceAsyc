@@ -14,9 +14,9 @@ module.exports = function getArchEnemy (hero, cb) {
             case 'WOLVERINE':
                 return cb(null, 'SABRETOOTH');
             case 'THOR':
-                return 'LOKI';
+                return cb(null, 'LOKI');
             default:
-                return cb('With great power comes great responsibility...');
+                return cb({message: 'With great power comes great responsibility...'});
         }
     }, Math.random() * 2000);
 };
