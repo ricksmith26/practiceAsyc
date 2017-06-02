@@ -69,7 +69,7 @@ This section looks at the [async.js](https://caolan.github.io/async/). It is a b
 * There is also a limit version on lots of these which enables you to limit the number of async functions running at any point in time. This is useful because you try and make a 1000 requests to the same database at once, it may not be able to handle all of these. By limiting the number of async functions being invoked at once, it means that we can reduce the amount of requests at any point in time.
 * Finally, and this is Chris' favourite, there is a waterfall method. Have a look at the documentation but it is a useful method to have something be passed down from function to function to collate data from several different function calls.
 
-10. Write a function called `fetchPizzas` that takes an array of pizza ids (use [1, 2, 3, 4, 5]) and an error-first callback. In this function, use async.js with the array of ids to invoke `getPizzaById` for each id. Once you have got all pizza responses, invoke the callback with an array of the pizza objects.
+10. Write a function called `fetchPizzas` that takes an array of pizza ids (use [1, 2, 3, 4]) and an error-first callback. In this function, use async.js with the array of ids to invoke `getPizzaById` for each id. Once you have got all pizza responses, invoke the callback with an array of the pizza objects.
 
 11. Try re-writing tasks 6 & 7 using the async library. You can use your existing test suite as this should be a refactor and therefore all tests should still pass.
 
