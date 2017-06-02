@@ -1,5 +1,5 @@
 module.exports = function getFileNoRes (filename, cb) {
     setTimeout(function () {
-        cb(null, 'Effectively never going to happen');
-    }, 10E5);
+        cb(null, 'It took too long, so we dealt with it!');
+    }, 6000);
 };
