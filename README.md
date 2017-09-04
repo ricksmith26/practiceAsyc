@@ -56,11 +56,7 @@ The main issue here is being able to keep track of what response goes in which i
 
 This is a useful in the wild as it can help get feedback to the user earlier and make loading seem faster. I.e. if you was waiting for a page to load and it logged each as they came in, it would feel faster than waiting until everything had been received and logged them all at once. To be able to test this you will need to use a sinon spy function to 'wrap' the console.log method.
 
-7. Write a function called `fetchFileWithTimeout` that takes a filename and an error-first callback. This function will need to invoke `getFileNoRes(fileName, yourCallbackFunction)`. As this function is designed to never call your callback, you need to guard against this in the callback you pass to `getFileNoRes`. Use a timer to invoke the your callback function after a period (i.e. 3s) of time if it has not already been called. Think back to your Higher Order Functions sprint or Lowbar ;)
-
-In reality, we may use external libraries etc that we may not be able to trust completely. We don't want our code to forever be in a state of waiting so we may need have some kind of timer within our code so that we can short circuit out if the callback doesn't get called within a certain timeframe.
-
-8. Write a function called `fetchFileWithSingleCall` that takes a filename and an error-first callback. This function will need to invoke `getFileMany(fileName, yourCallbackFunction)`. As this function is designed to 'acidentally' call your callback multiple times, you need to guard against this as in some cases. You need to stop this callback from being called more than once. Again, think back to your Higher Order Functions sprint or Lowbar ;)
+8. Write a function called `fetchFileWithSingleCall` that takes a filename and an error-first callback. This function will need to invoke `getFileMany(fileName, yourCallbackFunction)`. As this function is designed to 'acidentally' call your callback multiple times, you need to guard against this as in some cases. You need to stop this callback from being called more than once. Again, think back to your Lowbar sprint ;)
 
 Imagine a function that once a credit-card details are validated, it calls the callback. This callback could be a take payment callback and if this creditCardValidation function calls the callback multiple times, it could charge a client several times accidentally. Sad times.
 
