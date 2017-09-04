@@ -214,7 +214,7 @@ describe('fetchSuperHeroes', function () {
     });
 });
 
-describe.only('fetchOpponents', () => {
+describe('fetchOpponents', () => {
     it('should be a function', function () {
         expect(fetchOpponents).to.be.a('function');
     });
@@ -242,7 +242,7 @@ describe.only('fetchOpponents', () => {
             done();
         });
     });
-});
+}).timeout(5000);
 
 describe('fetchFilesAndLog', function () {
     it('should be a function', function () {
