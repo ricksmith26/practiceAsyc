@@ -1,6 +1,6 @@
 # Understanding Async
 
-JavaScript code can be asyncronous and we need to know how to deal with this. We have many tools that we can utilise and this sprint focuses on the bread and butter. Callbacks.
+Not all JavaScript code happens in order - it is often **asynchronous**, and we need to know how to deal with this. We have many tools that we can utilise, and this sprint focuses on the bread and butter: callbacks.
 
 Callbacks are currently the most common way that programmes can work with results from asyncronous functions/code. To recap on today's lecture, a callback is a function that may be invoked at some point in the future.
 
@@ -54,15 +54,46 @@ The main issue here is being able to keep track of what response goes in which i
 
 6. Write a function called `fetchFilesAndLog`. It needs to take an array of file names and an error-first callback. This function will need to invoke `getFile(fileName, yourCallbackFunction)` for each file. This function must log the results in order that they are requested in and as soon as possible. So for example if we have files 1, 2, 3, 4. If 1 comes back first it will log 1, then if 3 comes back it will wait for 2 and then log 2 and 3. Then log 4 when it gets its response. Once all responses have been received, it needs to invoke the callback with the string 'Complete!';
 
-This is a useful in the wild as it can help get feedback to the user earlier and make loading seem faster. I.e. if you was waiting for a page to load and it logged each as they came in, it would feel faster than waiting until everything had been received and logged them all at once. To be able to test this you will need to use a sinon spy function to 'wrap' the console.log method.
+This is a useful in the wild as it can help get feedback to the user earlier and make loading seem faster. I.e. if you were waiting for a page to load and it logged each as they came in, it would feel faster than waiting until everything had been received and logged them all at once. To be able to test this you will need to use a sinon spy function to 'wrap' the console.log method.
 
-8. Write a function called `fetchFileWithSingleCall` that takes a filename and an error-first callback. This function will need to invoke `getFileMany(fileName, yourCallbackFunction)`. As this function is designed to 'acidentally' call your callback multiple times, you need to guard against this as in some cases. You need to stop this callback from being called more than once. Again, think back to your Lowbar sprint ;)
+8. Write a function called `fetchFileWithSingleCall` that takes a filename and an error-first callback. This function will need to invoke `getFileMany(fileName, yourCallbackFunction)`. As this function is designed to 'accidentally' call your callback multiple times, you need to guard against this, as in some cases, you need to ensure this callback isn't called more than once: imagine a function that once a credit-card details are validated, it calls the callback. This callback could be a take payment callback and if this creditCardValidation function calls the callback multiple times, it could charge a client several times accidentally. Sad times. There's a lowbar function you made that you could look to for inspiration here...
 
-Imagine a function that once a credit-card details are validated, it calls the callback. This callback could be a take payment callback and if this creditCardValidation function calls the callback multiple times, it could charge a client several times accidentally. Sad times.
+## Stage 2.5 - an optional detour
+
+Stage 3 gets pretty complex and conceptual, so if you want to take on a more practical project that could actually make your lives easier for the remainder of the course, you may want to look at this instead.
+
+Your aim is to build a project generator. The end goal is to be able to be able to use the terminal command ```$ generate my_new_project``` and it should create a directory with the project's name in your current location, and fill it with all the necessary files to start a basic JS project.
+
+
+These files should include:
+
+• an index.js
+• a spec folder
+• an index.spec.js
+• a package.json set up with the basic dependencies and scripts
+• a README.md file
+• an eslint config file
+• a .gitignore file
+• a git repo initialised
+
+In order to do this, you will need to utilise the file sytem. A **File System** module is available in Node, and you can read about it in the docs.
+
+In order to revise your understanding of async, you should only use async methods. **Therefore any function ending in 'sync' is not allowed.**
+
+Note: a big part of problem solving is being able to read documentation, and establish what you're going to need and how you're going to use it.
+
+You will also have to research how to install your program on your computer to make the generate command globally available from your terminal.
+
+**Advanced Features**
+
+• Configure your generator to automatically run npm install when used, installing all the packages listed in the package.json.
+• If called like so: generate [project name] [github http] it should automatically add the github http as a remote.
+• It should do an inital commit with the message initial commit and push it to your git hub on the link provided.
+• Explore how you could add interactivity purely with Node, i.e. ask the user to input the name of the project on the console or select between a choice of project templates
 
 ## Stage 3
 
-This section looks at the [async.js](https://caolan.github.io/async/). It is a bit like underscore but it works for async methods which comes in handy to manage async behaviour. Now theres lots it can do but there are some methods that are pretty useful to know about from the start;
+This section looks at the [async.js](https://caolan.github.io/async/). It is a bit like underscore/lodash but it works for async methods which comes in handy to manage async behaviour. Now theres lots it can do but there are some methods that are pretty useful to know about from the start;
 
 * There is an each, map and filter that works like their sync counterparts but are able to wait for async response.
 * Any of the methods that have series in their name means that it will wait until it gets a response from one async function before it calls the next one.
