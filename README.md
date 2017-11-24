@@ -15,7 +15,7 @@ For this sprint, we are going to focus on the core concepts of async code. Some 
 
 ## Rules
 
-You do not need to look in the utils folder. You should consider its contents as third party APIs that respond after a period of time. As with the APIs you will be dealing with for the rest of the course, the only thing you will know about them is what the documentation (I.e. this README) tells you.
+You should not look in the utils folder. You should consider its contents as third party APIs that respond after a period of time - all you know about the code is what is provided in the documentation (in this case, this README).
 
 To make life easier, we have written the basic tests.
 
@@ -32,7 +32,9 @@ To make life easier, we have written the basic tests.
 
 ## Stage 1
 
-1. Write a function `blockingEcho` that takes a string. It then waits 3 seconds using a loop and returns the string. This is called blocking code as it will not let JavaScript run any other code whilst it waits. If you want, try calling this code 3 times in a row and see how long it takes. This is a painful way to code.
+1. Write a function `blockingEcho` that takes a string. It then waits 3 seconds using a loop and returns the string. This is called blocking code as it will not let JavaScript run any other code whilst it waits. If you want, try calling this code 3 times in a row and see how long it takes.
+
+This is a painful way to code. Do not do this again!
 
 2. JavaScript uses async code to allow it to do things whilst waiting for results. Try doing the same function using setTimeout. Call it `asyncEcho`. This time it will need to take a string and an error-first callback as arguments. This is non-blocking as JS is able to deal with other things and when the timer ends, it is able to then deal with the callback. Again, try calling this function 3 times and see how long it takes. This way is a lot less CPU intensive and frees up JS to deal with other stuff while it waits.
 
@@ -63,7 +65,6 @@ This is a useful in the wild as it can help get feedback to the user earlier and
 Stage 3 gets pretty complex and conceptual, so if you want to take on a more practical project that could actually make your lives easier for the remainder of the course, you may want to look at this instead.
 
 Your aim is to build a project generator. The end goal is to be able to be able to use the terminal command ```$ generate my_new_project``` and it should create a directory with the project's name in your current location, and fill it with all the necessary files to start a basic JS project.
-
 
 These files should include:
 
