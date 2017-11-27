@@ -17,7 +17,7 @@ For this sprint, we are going to focus on the core concepts of async code. Some 
 
 You should not look in the utils folder. You should consider its contents as third party APIs that respond after a period of time - all you know about the code is what is provided in the documentation (in this case, this README).
 
-To make life easier, we have written the basic tests.
+To make life easier, we have written the basic tests.  The tests for the functions that you have to write are in ./spec/index.spec.js
 
 ## Functions available to you
 
@@ -58,7 +58,7 @@ The main issue here is being able to keep track of what response goes in which i
 
 This is a useful in the wild as it can help get feedback to the user earlier and make loading seem faster. I.e. if you were waiting for a page to load and it logged each as they came in, it would feel faster than waiting until everything had been received and logged them all at once. To be able to test this you will need to use a sinon spy function to 'wrap' the console.log method.
 
-8. Write a function called `fetchFileWithSingleCall` that takes a filename and an error-first callback. This function will need to invoke `getFileMany(fileName, yourCallbackFunction)`. As this function is designed to 'accidentally' call your callback multiple times, you need to guard against this, as in some cases, you need to ensure this callback isn't called more than once: imagine a function that once a credit-card details are validated, it calls the callback. This callback could be a take payment callback and if this creditCardValidation function calls the callback multiple times, it could charge a client several times accidentally. Sad times. There's a lowbar function you made that you could look to for inspiration here...
+7. Write a function called `fetchFileWithSingleCall` that takes a filename and an error-first callback. This function will need to invoke `getFileMany(fileName, yourCallbackFunction)`. As this function is designed to 'accidentally' call your callback multiple times, you need to guard against this, as in some cases, you need to ensure this callback isn't called more than once: imagine a function that once a credit-card details are validated, it calls the callback. This callback could be a take payment callback and if this creditCardValidation function calls the callback multiple times, it could charge a client several times accidentally. Sad times. There's a lowbar function you made that you could look to for inspiration here...
 
 ## Stage 2.5 - an optional detour
 
@@ -101,8 +101,8 @@ This section looks at the [async.js](https://caolan.github.io/async/). It is a b
 * There is also a limit version on lots of these which enables you to limit the number of async functions running at any point in time. This is useful because you try and make a 1000 requests to the same database at once, it may not be able to handle all of these. By limiting the number of async functions being invoked at once, it means that we can reduce the amount of requests at any point in time.
 * Finally, and this is Chris' favourite, there is a waterfall method. Have a look at the documentation but it is a useful method to have something be passed down from function to function to collate data from several different function calls.
 
-9. Write a function called `fetchPizzas` that takes an array of pizza ids (use [1, 2, 3, 4]) and an error-first callback. In this function, use async.js with the array of ids to invoke `getPizzaById` for each id. Once you have got all pizza responses, invoke the callback with an array of the pizza objects.
+8. Write a function called `fetchPizzas` that takes an array of pizza ids (use [1, 2, 3, 4]) and an error-first callback. In this function, use async.js with the array of ids to invoke `getPizzaById` for each id. Once you have got all pizza responses, invoke the callback with an array of the pizza objects.
 
-10. Try re-writing tasks 6 & 7 using the async library. You can use your existing test suite as this should be a refactor and therefore all tests should still pass.
+9. Try re-writing tasks 6 & 7 using the async library. You can use your existing test suite as this should be a refactor and therefore all tests should still pass.
 
-11. Write a function called `fetchLocalPizzaShopInfo` which takes an error-first callback as an argument. Use async.js to firstly invoke ```getLocalPizzaShops```. This function will return an array of pizzaShop objects. Loop through these and filter out the ones who do not deliver. For the remaining pizza shops, invoke ```getPizzasForShopId``` passing in each shop id. This will invoke its callback with an array of pizzas. You need to add these pizzas as a `pizzas` property to the relevant pizza shop object. Once all the pizza info has been received, invoke the error-first callback with the array of pizza shop objects. I would suggest looking at async waterfall for this task.
+10. Write a function called `fetchLocalPizzaShopInfo` which takes an error-first callback as an argument. Use async.js to firstly invoke ```getLocalPizzaShops```. This function will return an array of pizzaShop objects. Loop through these and filter out the ones who do not deliver. For the remaining pizza shops, invoke ```getPizzasForShopId``` passing in each shop id. This will invoke its callback with an array of pizzas. You need to add these pizzas as a `pizzas` property to the relevant pizza shop object. Once all the pizza info has been received, invoke the error-first callback with the array of pizza shop objects. I would suggest looking at async waterfall for this task.

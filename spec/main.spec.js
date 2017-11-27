@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const sinon = require('sinon');
 const {
     blockingEcho,
@@ -11,10 +11,7 @@ const {
     fetchPizzas,
     fetchLocalPizzaShopInfo
 } = require('../main');
-const {
-    getArchEnemy, getFile, getFileMany, getFileNoRes,
-    getLocalPizzaShops, getPizzaById, getPizzasForShopId, getSuperHeroes
-} = require('../utils/index');
+
 
 describe('blockingEcho', function () {
     it('should be a function', function () {
@@ -25,6 +22,7 @@ describe('blockingEcho', function () {
         expect(blockingEcho('woo')).to.equal('woo');
     });
 });
+
 
 describe('asyncEcho', function () {
     it('should be a function', function () {
@@ -41,153 +39,6 @@ describe('asyncEcho', function () {
     });
 });
 
-describe('getArchEnemy', () => {
-    it('should be a function', function () {
-        expect(getArchEnemy).to.be.a('function');
-    });
-    it('should return correct Enemy for valid hero', function (done) {
-        getArchEnemy('BATMAN', function (err, villain) {
-            expect(villain).to.equal('THE JOKER');
-            done();
-        });
-    });
-    it('should return err for invalid hero input', function (done) {
-        getArchEnemy('STEVE', function (err) {
-            expect(err.message).to.equal('With great power comes great responsibility...');
-            done();
-        });
-    });
-});
-
-describe('getFile', function () {
-    it('should be a function', function () {
-        expect(getFile).to.be.a('function');
-    });
-    it('should invoke callback with contents of file', function (done) {
-        const filename = 'test';
-        getFile(filename, function (err, contents) {
-            expect(contents).to.equal(`File contents of ${filename}`);
-            done();
-        });
-    });
-});
-
-describe('getFileMany', function () {
-    it('should be a function', function () {
-        expect(getFileMany).to.be.a('function');
-    });
-    it('should invoke callback with contents of file', function (done) {
-        const filename = 'test';
-        let called = false;
-        getFileMany(filename, function (err, contents) {
-            expect(contents).to.equal(`File contents of ${filename}`);
-            if (!called) {
-                called = true;
-                done();
-            }
-        });
-    });
-    it('should invoke the callback 4 times', function (done) {
-        const filename = 'test';
-        const spy = sinon.spy();
-        getFileMany(filename, function () {
-            spy();
-            if (spy.callCount === 4) {
-                done();
-            }
-        });
-    });
-});
-
-describe('getFileNoRes', function () {
-    it('should be a function', function () {
-        expect(getFileNoRes).to.be.a('function');
-    });
-    it('should invoke callback with contents of file', function (done) {
-        this.timeout(5000);
-        const filename = 'test';
-        const spy = sinon.spy();
-        getFileNoRes(filename, spy);
-        setTimeout(function () {
-            expect(spy.called).to.be.false;
-            done();
-        }, 3000);
-    });
-});
-
-describe('getLocalPizzaShops', function () {
-    it('should be a function', function () {
-        expect(getLocalPizzaShops).to.be.a('function');
-    });
-    it('should invoke the callback with an array of 5 elements', function (done) {
-        getLocalPizzaShops(function (err, shops) {
-            expect(shops).to.be.an('array');
-            expect(shops.length).to.equal(5);
-            done();
-        });
-    });
-});
-
-describe('getPizzaById', function () {
-    it('should be a function', function () {
-        expect(getPizzaById).to.be.a('function');
-    });
-    it('should invoke callback with correct pizza for valid id', function (done) {
-        const expected = { id: 1, name: 'Margarita', ingredients: ['cheese', 'tomato'] };
-        const cb = function (err, pizza) {
-            expect(pizza).to.eql(expected);
-            done();
-        };
-        getPizzaById(1, cb);
-    });
-    it('should invoke callback with error object if not valid pizza id', function (done) {
-        const expected = 'We don\'t sell those pizzas here';
-        const cb = function (err) {
-            expect(err.message).to.eql(expected);
-            done();
-        };
-        getPizzaById(55, cb);
-    });
-});
-
-describe('getPizzasForShopId', function () {
-    it('should be a function', function () {
-        expect(getPizzasForShopId).to.be.a('function');
-    });
-    it('should invoke callback with correct pizzas for valid shop id', function (done) {
-        const expected = [
-            { id: 1, name: 'Margarita', ingredients: ['cheese', 'tomato'] },
-            { id: 2, name: 'Meat Feast', ingredients: ['cheese', 'tomato', 'Ham', 'Bacon', 'Beef'] },
-            { id: 4, name: 'Hawaian', ingredients: ['cheese', 'tomato', 'Ham', 'Pineapple'] }
-        ];
-        const cb = function (err, pizza) {
-            expect(pizza).to.eql(expected);
-            done();
-        };
-        getPizzasForShopId(1, cb);
-    });
-    it('should invoke callback with error object if not valid pizza id', function (done) {
-        const expected = 'This shop doesn\t exist';
-        const cb = function (err) {
-            expect(err.message).to.eql(expected);
-            done();
-        };
-        getPizzasForShopId(55, cb);
-    });
-});
-
-describe('getSuperHeroes', function () {
-    it('should be a function', function () {
-        expect(getSuperHeroes).to.be.a('function');
-    });
-    it('should invoke the callback with an array of 7 elements', function (done) {
-        getSuperHeroes(function (err, heroes) {
-            expect(heroes).to.be.an('array');
-            expect(heroes.length).to.equal(7);
-            done();
-        });
-    });
-});
 
 describe('fetchSuperHeroes', function () {
     it('should be a function', function () {
@@ -214,6 +65,7 @@ describe('fetchSuperHeroes', function () {
     });
 });
 
+
 describe('fetchOpponents', () => {
     it('should be a function', function () {
         expect(fetchOpponents).to.be.a('function');
@@ -223,26 +75,52 @@ describe('fetchOpponents', () => {
             expect(pairs).to.be.an('array');
             done();
         });
-    });
+    }).timeout(4000);
     it('should return array of hero villain objects', function (done) {
         fetchOpponents(function (err, pairs) {
             expect(pairs[0].hasOwnProperty('hero')).to.equal(true);
             expect(pairs[0].hasOwnProperty('villain')).to.equal(true);
             done();
         });
-    });
+    }).timeout(4000);
     it('should return array of objects sorted alphabetically by hero names', function (done) {
         fetchOpponents(function (err, pairs) {
             const result = pairs.toString();
             pairs.sort(function (a, b) {
                 return a.hero > b.hero;
             });
-
             expect(result).to.equal(pairs.toString());
             done();
         });
+    }).timeout(4000);
+});
+
+
+describe('fetchContentOfFiles', function () {
+    it('exists', function () {
+        expect(fetchContentOfFiles).to.be.a('function');
     });
-}).timeout(5000);
+    it('should return a response for each file', function (done) {
+        var fileNames = [1, 2, 3, 4, 5];
+        function cb(err, files) {
+            expect(files.length).to.equal(fileNames.length);
+            done();
+        }
+        fetchContentOfFiles(fileNames, cb);
+    });
+    it('should invoke callback with filenames in order', function (done) {
+        var fileNames = [1, 2, 3, 4, 5,6,7,8,9,10];
+        function cb(err, files) {
+            expect(files.length).to.equal(fileNames.length);
+            fileNames.forEach(function (name, i) {
+                expect(files[i]).to.equal(`File contents of ${name}`);
+            });
+            done();
+        }
+        fetchContentOfFiles(fileNames, cb);
+    });
+});
+
 
 describe('fetchFilesAndLog', function () {
     it('should be a function', function () {
@@ -260,34 +138,7 @@ describe('fetchFilesAndLog', function () {
     });
 });
 
-describe('fetchContentOfFiles', function () {
-    it('exists', function () {
-        expect(fetchContentOfFiles).to.be.a('function');
-    });
-    it('should return a response for each file', function (done) {
-        var fileNames = [1, 2, 3, 4, 5];
-        function cb(err, files) {
-            expect(files.length).to.equal(fileNames.length);
-            done();
-        }
-        fetchContentOfFiles(fileNames, cb);
-    });
-    it('should invoke callback with filenames in order', function (done) {
-        var fileNames = [1, 2, 3, 4, 5];
-        function cb(err, files) {
-            expect(files.length).to.equal(fileNames.length);
-            fileNames.forEach(function (name, i) {
-                expect(files[i]).to.equal(`File contents of ${name}`);
-            });
-            done();
-        }
-        fetchContentOfFiles(fileNames, cb);
-    });
-});
 
-describe('fetchFileWithTimeout', function () {
-
-});
 describe('fetchFileWithSingleCall', function () {
     it('exists', function () {
         expect(fetchFileWithSingleCall).to.be.a('function');
@@ -313,6 +164,7 @@ describe('fetchFileWithSingleCall', function () {
     });
 });
 
+
 describe('fetchPizzas', function () {
     it('exists', function () {
         expect(fetchPizzas).to.be.a('function');
@@ -336,6 +188,7 @@ describe('fetchPizzas', function () {
         fetchPizzas(pizzaIds, cb);
     });
 });
+
 
 describe('fetchLocalPizzaShopInfo', function () {
     it('exists', function () {
