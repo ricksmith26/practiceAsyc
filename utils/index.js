@@ -4,6 +4,7 @@ module.exports = {
     getFileMany: require('./getFileMany'),
     getFileNoRes: require('./getFileNoRes'),
     getLocalPizzaShops: require('./getLocalPizzaShops'),
+    getPizzaById: require('./getPizzaById'),
     getPizzasForShopId: require('./getPizzasForShopId'),
     getSuperHeroes: require('./getSuperHeroes')
 };

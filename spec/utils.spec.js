@@ -149,7 +149,7 @@ describe('getPizzaById', function () {
     it('should invoke callback with error object if not valid pizza id', function (done) {
         const expected = 'We don\'t sell those pizzas here';
         const cb = function (err) {
-            expect(err.message).to.eql(expected);
+            expect(err.msg).to.eql(expected);
             done();
         };
         getPizzaById(55, cb);
@@ -173,9 +173,9 @@ describe('getPizzasForShopId', function () {
         getPizzasForShopId(1, cb);
     });
     it('should invoke callback with error object if not valid pizza id', function (done) {
-        const expected = 'This shop doesn\t exist';
+        const expected = 'This shop doesn\'t exist';
         const cb = function (err) {
-            expect(err.message).to.eql(expected);
+            expect(err.msg).to.eql(expected);
             done();
         };
         getPizzasForShopId(55, cb);

@@ -123,19 +123,16 @@ describe('fetchContentOfFiles', function () {
 
 
 describe('fetchFilesAndLog', function () {
-    it('should be a function', function () {
+    it('should be a function', function () {        
         expect(fetchFilesAndLog).to.be.a('function');
     });
-    it('should log each file', function (done) {
-        let count = 0;
-        sinon.stub(console, 'log').callsFake(function () {
-            count++;
-        });
+    it('should log each file', function (done) {        
+        let spy = sinon.spy(console, 'log');
         fetchFilesAndLog([1, 2, 3], function () {
-            expect(count).to.equal(4);
+            expect(spy.callCount).to.equal(4);
             done();
         });
-    });
+    }).timeout(4000);
 });
 
 
