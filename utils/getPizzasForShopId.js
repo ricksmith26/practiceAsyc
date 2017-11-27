@@ -32,7 +32,7 @@ module.exports = function getPizzasForShopId (shopId, cb) {
                     {id: 4, name: 'Hawaian', ingredients: ['cheese', 'tomato', 'Ham', 'Pineapple']}
                 ]);
             default:
-                return cb('This shop doesn\t exist');
+            return cb({msg: 'This shop doesn\'t exist'});
         }
     }, Math.random() * 2000);
 };

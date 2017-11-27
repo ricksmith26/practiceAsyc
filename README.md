@@ -17,7 +17,7 @@ For this sprint, we are going to focus on the core concepts of async code. Some 
 
 You should not look in the utils folder. You should consider its contents as third party APIs that respond after a period of time - all you know about the code is what is provided in the documentation (in this case, this README).
 
-To make life easier, we have written the basic tests.  The tests for the functions that you have to write are in ./spec/index.spec.js
+To make life easier, we have written the basic tests.  The tests for the functions that you have to write are in ./spec/main.spec.js
 
 ## Functions available to you
 
