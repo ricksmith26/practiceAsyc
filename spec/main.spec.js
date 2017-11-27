@@ -85,11 +85,15 @@ describe('fetchOpponents', () => {
     }).timeout(4000);
     it('should return array of objects sorted alphabetically by hero names', function (done) {
         fetchOpponents(function (err, pairs) {
-            const result = pairs.toString();
-            pairs.sort(function (a, b) {
-                return a.hero > b.hero;
-            });
-            expect(result).to.equal(pairs.toString());
+            expect(pairs).to.eql([
+            { hero: 'BATMAN', villain: 'THE JOKER' },
+            { hero: 'CAPTAIN AMERICA', villain: 'RED SKULL' },
+            { hero: 'SPIDERMAN', villain: 'GREEN GOBLIN' },
+            { hero: 'SUPERMAN', villain: 'LEX LUTHOR' },
+            { hero: 'THE FLASH', villain: 'ZOOM' },
+            { hero: 'THOR', villain: 'LOKI' },
+            { hero: 'WOLVERINE', villain: 'SABRETOOTH' }]
+          );
             done();
         });
     }).timeout(4000);
@@ -101,7 +105,7 @@ describe('fetchContentOfFiles', function () {
         expect(fetchContentOfFiles).to.be.a('function');
     });
     it('should return a response for each file', function (done) {
-        var fileNames = [1, 2, 3, 4, 5];
+        let fileNames = [1, 2, 3, 4, 5];
         function cb(err, files) {
             expect(files.length).to.equal(fileNames.length);
             done();
@@ -109,7 +113,7 @@ describe('fetchContentOfFiles', function () {
         fetchContentOfFiles(fileNames, cb);
     });
     it('should invoke callback with filenames in order', function (done) {
-        var fileNames = [1, 2, 3, 4, 5,6,7,8,9,10];
+        let fileNames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         function cb(err, files) {
             expect(files.length).to.equal(fileNames.length);
             fileNames.forEach(function (name, i) {
@@ -127,15 +131,12 @@ describe('fetchFilesAndLog', function () {
         expect(fetchFilesAndLog).to.be.a('function');
     });
     it('should log each file', function (done) {
-        let count = 0;
-        sinon.stub(console, 'log').callsFake(function () {
-            count++;
-        });
-        fetchFilesAndLog([1, 2, 3], function () {
-            expect(count).to.equal(4);
+        let spy = sinon.spy(console,'log');
+        fetchFilesAndLog([1, 2, 3, 4, 5, 6, 7], function () {
+            expect(spy.callCount).to.equal(8);
             done();
         });
-    });
+    }).timeout(6000);
 });
 
 
@@ -144,15 +145,15 @@ describe('fetchFileWithSingleCall', function () {
         expect(fetchFileWithSingleCall).to.be.a('function');
     });
     it('responds with file name', function () {
-        var fileName = 'File Name';
+        let fileName = 'File Name';
         function cb(err, file) {
-            expect(file).to.equal(`File Contents of ${fileName}`);
+            expect(file).to.equal(`File contents of ${fileName}`);
         }
         fetchFileWithSingleCall(fileName, cb);
     });
     it('The call back should only be called once', function (done) {
-        var fileName = 'File Name';
-        var counter = 0;
+        let fileName = 'File Name';
+        let counter = 0;
         function cb() {
             counter++;
         }
@@ -161,7 +162,7 @@ describe('fetchFileWithSingleCall', function () {
             expect(counter).to.equal(1);
             done();
         }, 2000);
-    });
+    }).timeout(3000);
 });
 
 
@@ -211,7 +212,7 @@ describe('fetchLocalPizzaShopInfo', function () {
         fetchLocalPizzaShopInfo(cb);
     });
     it('should respond with the correct list of shops', function (done) {
-        var shops = [
+        let shops = [
             { id: 1, name: 'Adrians Amazing Pizza', deliver: true },
             { id: 3, name: 'Mauros Marvelous Pizza', deliver: true },
             { id: 4, name: 'Harriets Hungry Pizza', deliver: true },

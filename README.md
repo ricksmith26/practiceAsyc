@@ -24,7 +24,6 @@ To make life easier, we have written the basic tests.  The tests for the functio
     getSuperHeroes(yourCallbackHere) //=> [returns an array of superhero names]
     getArchEnemy(hero, yourCallbackHere) //=> 'villain name'
     getFile(filename, yourCallbackHere) //=> 'File contents of filename'
-    getFileNoRes(filename, yourCallbackHere) //=> Your callback will never be called
     getFileMany(filename, yourCallbackHere) //=> Your callback will be called multiple times
     getPizzaById(id, yourCallbackHere) //=> {id: 1, name: 'Margarita', ingredients: ['cheese', 'tomato']}
     getLocalPizzaShops(yourCallbackHere) //=> [{id: 1, name: 'Adrians Pizza Place'}]
@@ -44,7 +43,7 @@ This is a painful way to code. Do not do this again!
 
 ```[{hero: 'BATMAN', villain: 'THE JOKER'}, {hero: 'CAPTAIN AMERICA', villain: 'RED SKULL'}, ...]```
 
-Here we will need to compose several async calls to build up the result and when ready, call the final callback with the built up array. The call to ```getArchEnemy``` is async so think about how you will know when it is time to invoke your callback with the array.
+The final array of hero and villain objects should be sorted alphabetically by the hero names as in the example shown above.  We will need to compose several async calls to build up the result and when ready, call the final callback with the built up array. The call to ```getArchEnemy``` is async so think about how you will know when it is time to invoke your callback with the array.
 
 ## Stage 2
 
