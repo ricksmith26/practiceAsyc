@@ -2,21 +2,21 @@ module.exports = function getArchEnemy (hero, cb) {
     setTimeout(function () {
         switch (hero) {
             case 'SUPERMAN':
-                cb(null, 'LEX LUTHOR');
+            return cb(null, 'LEX LUTHOR');
             case 'BATMAN':
-                cb(null, 'THE JOKER');
+            return cb(null, 'THE JOKER');
             case 'THE FLASH':
-                cb(null, 'ZOOM');
+            return cb(null, 'ZOOM');
             case 'SPIDERMAN':
-                cb(null, 'GREEN GOBLIN');
+            return cb(null, 'GREEN GOBLIN');
             case 'CAPTAIN AMERICA':
-                cb(null, 'RED SKULL');
+            return cb(null, 'RED SKULL');
             case 'WOLVERINE':
-                cb(null, 'SABRETOOTH');
+            return cb(null, 'SABRETOOTH');
             case 'THOR':
-                cb(null, 'LOKI');
+            return cb(null, 'LOKI');
             default:
-                cb({message: 'With great power comes great responsibility...'});
+            return cb({message: 'With great power comes great responsibility...'});
         }
     }, Math.random() * 2000);
 };
