@@ -126,14 +126,18 @@ describe('fetchContentOfFiles', function () {
 });
 
 
-describe('fetchFilesAndLog', function () {
+describe.only('fetchFilesAndLog', function () {
     it('should be a function', function () {
         expect(fetchFilesAndLog).to.be.a('function');
     });
     it('should log each file', function (done) {
         let spy = sinon.spy(console,'log');
-        fetchFilesAndLog([1, 2, 3, 4, 5, 6, 7], function () {
-            expect(spy.callCount).to.equal(8);
+        const fileNames = [1, 2, 3, 4, 5, 6, 7];
+        fetchFilesAndLog(fileNames, function () {
+            expect(spy.callCount).to.equal(7);
+            fileNames.forEach((fileName) => {
+                expect(spy.calledWith(`File contents of ${fileName}`)).to.be.true;
+            });
             done();
         });
     }).timeout(6000);
