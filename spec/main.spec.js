@@ -126,7 +126,7 @@ describe('fetchContentOfFiles', function () {
 });
 
 
-describe.only('fetchFilesAndLog', function () {
+describe('fetchFilesAndLog', function () {
     it('should be a function', function () {
         expect(fetchFilesAndLog).to.be.a('function');
     });
