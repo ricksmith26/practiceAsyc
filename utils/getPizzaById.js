@@ -11,7 +11,7 @@ module.exports = function getPizzaById (id, cb) {
             case 4:
                 return cb(null, {id: 4, name: 'Hawaian', ingredients: ['cheese', 'tomato', 'Ham', 'Pineapple']});
             default:
-                return cb('We don\'t sell those pizzas here');
+                return cb({msg: 'We don\'t sell those pizzas here'});
         }
     }, Math.random() * 2000);
 };

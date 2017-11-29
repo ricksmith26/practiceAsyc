@@ -127,7 +127,7 @@ describe('fetchContentOfFiles', function () {
 
 
 describe('fetchFilesAndLog', function () {
-    it('should be a function', function () {
+    it('should be a function', function () {        
         expect(fetchFilesAndLog).to.be.a('function');
     });
     it('should log each file', function (done) {

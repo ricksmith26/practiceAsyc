@@ -4,6 +4,8 @@
   "description": "Async callbacks is the very basics of understanding how to use asyncronous code in JavaScript",
   "main": "main.js",
   "scripts": {
+    "test-utils": "mocha ./spec/utils.spec.js",
+    "test-dev": "mocha ./spec/main.spec.js",
     "test": "mocha ./spec/*.spec.js --bail",
     "lint": "eslint ./",
     "posttest": "npm run lint"

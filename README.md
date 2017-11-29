@@ -17,7 +17,7 @@ For this sprint, we are going to focus on the core concepts of async code. Some 
 
 You should not look in the utils folder. You should consider its contents as third party APIs that respond after a period of time - all you know about the code is what is provided in the documentation (in this case, this README).
 
-To make life easier, we have written the basic tests.  The tests for the functions that you have to write are in ./spec/index.spec.js
+To make life easier, we have written the basic tests.  The tests for the functions that you have to write are in ./spec/main.spec.js
 
 ## Functions available to you
 
@@ -67,14 +67,14 @@ Your aim is to build a project generator. The end goal is to be able to be able 
 
 These files should include:
 
-• an index.js
-• a spec folder
-• an index.spec.js
-• a package.json set up with the basic dependencies and scripts
-• a README.md file
-• an eslint config file
-• a .gitignore file
-• a git repo initialised
+* an index.js
+* a spec folder
+* an index.spec.js
+* a package.json set up with the basic dependencies and scripts
+* a README.md file
+* an eslint config file
+* a .gitignore file
+* a git repo initialised
 
 In order to do this, you will need to utilise the file sytem. A **File System** module is available in Node, and you can read about it in the docs.
 
@@ -86,14 +86,14 @@ You will also have to research how to install your program on your computer to m
 
 **Advanced Features**
 
-• Configure your generator to automatically run npm install when used, installing all the packages listed in the package.json.
-• If called like so: generate [project name] [github http] it should automatically add the github http as a remote.
-• It should do an inital commit with the message initial commit and push it to your git hub on the link provided.
-• Explore how you could add interactivity purely with Node, i.e. ask the user to input the name of the project on the console or select between a choice of project templates
+* Configure your generator to automatically run npm install when used, installing all the packages listed in the package.json.
+* If called like so: generate [project name] [github http] it should automatically add the github http as a remote.
+* It should do an inital commit with the message initial commit and push it to your git hub on the link provided.
+* Explore how you could add interactivity purely with Node, i.e. ask the user to input the name of the project on the console or select between a choice of project templates
 
 ## Stage 3
 
-This section looks at the [async.js](https://caolan.github.io/async/). It is a bit like underscore/lodash but it works for async methods which comes in handy to manage async behaviour. Now theres lots it can do but there are some methods that are pretty useful to know about from the start;
+This section looks at the [async.js](https://caolan.github.io/async/). It is a bit like underscore/lodash but it works for async methods which comes in handy to manage async behaviour. There's a lot it can do but there are some methods that are pretty useful to know about from the start:
 
 * There is an each, map and filter that works like their sync counterparts but are able to wait for async response.
 * Any of the methods that have series in their name means that it will wait until it gets a response from one async function before it calls the next one.
