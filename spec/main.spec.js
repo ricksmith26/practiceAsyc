@@ -207,25 +207,49 @@ describe('fetchLocalPizzaShopInfo', function () {
             done();
         }
         fetchLocalPizzaShopInfo(cb);
-    });
+    }).timeout(7000);
     it('Should filter out those shops which don\'t deliver', function (done) {
         function cb(err, pizzaShops) {
             expect(pizzaShops.length).to.equal(4);
             done();
         }
         fetchLocalPizzaShopInfo(cb);
-    });
+    }).timeout(7000);
     it('should respond with the correct list of shops', function (done) {
-        let shops = [
-            { id: 1, name: 'Adrians Amazing Pizza', deliver: true },
-            { id: 3, name: 'Mauros Marvelous Pizza', deliver: true },
-            { id: 4, name: 'Harriets Hungry Pizza', deliver: true },
-            { id: 5, name: 'Sams Special Pizza', deliver: true }
-        ];
         function cb(err, pizzaShops) {
-            expect(pizzaShops).to.eql(shops);
+            expect(pizzaShops[0].pizzas).to.eql([
+                {
+                  "id": 1,
+                  "name": "Margarita",
+                  "ingredients": [
+                    "cheese",
+                    "tomato"
+                  ]
+                },
+                {
+                  "id": 2,
+                  "name": "Meat Feast",
+                  "ingredients": [
+                    "cheese",
+                    "tomato",
+                    "Ham",
+                    "Bacon",
+                    "Beef"
+                  ]
+                },
+                {
+                  "id": 4,
+                  "name": "Hawaian",
+                  "ingredients": [
+                    "cheese",
+                    "tomato",
+                    "Ham",
+                    "Pineapple"
+                  ]
+                }
+              ]);
             done();
         }
         fetchLocalPizzaShopInfo(cb);
-    });
+    }).timeout(7000);
 });

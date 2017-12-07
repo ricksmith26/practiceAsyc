@@ -27,6 +27,7 @@
     "sinon": "^3.2.1"
   },
   "dependencies": {
-    "async": "^2.6.0"
+    "async": "^2.6.0",
+    "fs": "0.0.1-security"
   }
 }
