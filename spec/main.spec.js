@@ -113,6 +113,7 @@ describe('fetchContentOfFiles', function () {
         fetchContentOfFiles(fileNames, cb);
     });
     it('should invoke callback with filenames in order', function (done) {
+
         let fileNames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         function cb(err, files) {
             expect(files.length).to.equal(fileNames.length);
@@ -149,15 +150,15 @@ describe('fetchFileWithSingleCall', function () {
         expect(fetchFileWithSingleCall).to.be.a('function');
     });
     it('responds with file name', function () {
-        let fileName = 'File Name';
+        const fileName = 'TOP SECRET';
         function cb(err, file) {
             expect(file).to.equal(`File contents of ${fileName}`);
         }
         fetchFileWithSingleCall(fileName, cb);
     });
     it('The call back should only be called once', function (done) {
-        let fileName = 'File Name';
-        let counter = 0;
+        const fileName = 'DO NOT OPEN';
+        const counter = 0;
         function cb() {
             counter++;
         }
@@ -216,6 +217,13 @@ describe('fetchLocalPizzaShopInfo', function () {
         fetchLocalPizzaShopInfo(cb);
     }).timeout(7000);
     it('should respond with the correct list of shops', function (done) {
+        const pizzaShops = [
+            { id: 1, name: 'Anat\'s Amazing Pizza', deliver: true },
+            { id: 3, name: 'Mitch\'s Marvelous Pizza', deliver: true },
+            { id: 4, name: 'Haz\'s Hungry Pizza', deliver: true },
+            { id: 5, name: 'Sam\'s Special Pizza', deliver: true }
+        ];
+
         function cb(err, pizzaShops) {
             expect(pizzaShops[0].pizzas).to.eql([
                 {

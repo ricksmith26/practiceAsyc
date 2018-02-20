@@ -1,5 +1,5 @@
 {
-  "name": "Async-callbacks",
+  "name": "core-ft-async-awareness",
   "version": "1.0.0",
   "description": "Async callbacks is the very basics of understanding how to use asyncronous code in JavaScript",
   "main": "main.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/northcoders/October-wk02-recursion.git"
+    "url": "git+https://github.com/northcoders/CORE-FT-async-awareness.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/northcoders/October-wk02-recursion/issues"
+    "url": "https://github.com/northcoders/CORE-FT-async-awareness/issues"
   },
-  "homepage": "https://github.com/northcoders/October-wk02-recursion#readme",
+  "homepage": "https://github.com/northcoders/CORE-FT-async-awareness#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.15.0",
