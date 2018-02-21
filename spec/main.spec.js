@@ -158,7 +158,7 @@ describe('fetchFileWithSingleCall', function () {
     });
     it('The call back should only be called once', function (done) {
         const fileName = 'DO NOT OPEN';
-        const counter = 0;
+        let counter = 0;
         function cb() {
             counter++;
         }
