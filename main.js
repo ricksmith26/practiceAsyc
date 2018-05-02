@@ -1,5 +1,6 @@
 const {
-    getArchEnemy, getFile, getFileMany, getLocalPizzaShops, getPizzaById, getPizzasForShopId, getSuperHeroes
+  getArchEnemy,
+  getFile,
+  getFileMany,
+  getSuperHeroes
 } = require('./utils/index');
-
-
